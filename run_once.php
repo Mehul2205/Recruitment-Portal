@@ -12,7 +12,7 @@ $sql="CREATE TABLE `appdata`.`contact` ( `id` INT NOT NULL , `emergency_phone_nu
  {
      echo "Database error 2". $conn->error;
  }
-$sql="CREATE TABLE `appdata`.`details` ( `id` INT NOT NULL AUTO_INCREMENT , `firstname` VARCHAR(100) NOT NULL , `middlename` VARCHAR(100) NULL , `lastname` VARCHAR(100) NOT NULL , `dob` DATE NOT NULL , `gender` VARCHAR(50) NOT NULL , `category` VARCHAR(150) NOT NULL , `res_category` VARCHAR(150) NOT NULL , `email` VARCHAR(150) NOT NULL , `phone` VARCHAR(20) NOT NULL , `password` VARCHAR(100) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
+$sql="CREATE TABLE `appdata`.`details` ( `id` INT NOT NULL AUTO_INCREMENT , `firstname` TEXT NOT NULL , `middlename` TEXT NULL , `lastname` TEXT NOT NULL , `dob` DATE NOT NULL , `gender` VARCHAR(50) NOT NULL , `category` VARCHAR(150) NOT NULL , `res_category` VARCHAR(150) NOT NULL , `email` VARCHAR(150) NOT NULL , `phone` VARCHAR(20) NOT NULL , `password` VARCHAR(100) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;";
 if ($conn->query($sql) === FALSE)
  {
      echo "Database error 3". $conn->error;
