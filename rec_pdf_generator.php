@@ -1,7 +1,7 @@
 <?php
 	include_once('libs/fpdf.php');
 
-	require 'server.php';
+	require 'rec_server.php';
 	session_start();
 
 	$firstname=$_SESSION['name'];
@@ -127,18 +127,31 @@ foreach($result1 as $row) {
 
 $pdf->Ln();
 $pdf->SetFont('Arial','B',10);
-$pdf->Cell(10,62,"5.",1);
-$pdf->Cell(68,42,"Address for Correspondence",1);
-$sql1 ="SELECT address_line1, address_line2, city, pincode, district, state FROM `caddress` WHERE id='".$_SESSION['id']."';";
+$pdf->Cell(10,40,"5.",1);
+$pdf->Cell(68,20,"Address for Correspondence",1);
+$pdf->SetFont('Arial','',10);
+
+$sql1 ="SELECT address_line1 FROM `caddress` WHERE id='".$_SESSION['id']."';";
 $result1 = $conn->query($sql1);
-$pdf->SetFont('Arial','',8);
+$txt1 = "";
 foreach($result1 as $row) {
 	foreach($row as $column){
-		$pdf->Cell(102,6,$column,1,2);
+		$txt1 = $column;
 	}
 }
+
+$sql1 ="SELECT address_line2, city, district, state, pincode FROM `caddress` WHERE id='".$_SESSION['id']."';";
+$result1 = $conn->query($sql1);
+foreach($result1 as $row) {
+	foreach($row as $column){
+		// $pdf->Cell(102,6,$column,1,2);
+		$txt1 = $txt1.", ".$column;
+	}
+}
+$pdf->MultiCell(102,10,$txt1,1);
+
+
 $pdf->SetFont('Arial','B',10);
-$pdf->Ln();
 $pdf->Cell(10,10,'',0);
 $pdf->Cell(34,10,"Phone No.",1);
 $sql1 ="SELECT phone FROM `details` WHERE id='".$_SESSION['id']."';";
@@ -169,20 +182,31 @@ foreach($result1 as $row) {
 
 
 $pdf->Ln();
-$pdf->Cell(10,42,"6.",1);
-$pdf->Cell(68,42,"Parmanent Address",1);
-$sql1 ="SELECT address_line1, address_line2, city, pincode, district, state FROM `paddress` WHERE id='".$_SESSION['id']."';";
+$pdf->Cell(10,20,"6.",1);
+$pdf->Cell(68,20,"Parmanent Address",1);
+$pdf->SetFont('Arial','',10);
+
+$sql1 ="SELECT address_line1 FROM `paddress` WHERE id='".$_SESSION['id']."';";
 $result1 = $conn->query($sql1);
-$pdf->SetFont('Arial','',8);
+$txt1 = "";
 foreach($result1 as $row) {
 	foreach($row as $column){
-		$pdf->Cell(102,6,$column,1,2);
+		$txt1 = $column;
 	}
 }
+
+$sql1 ="SELECT address_line2, city, district, state, pincode FROM `paddress` WHERE id='".$_SESSION['id']."';";
+$result1 = $conn->query($sql1);
+foreach($result1 as $row) {
+	foreach($row as $column){
+		// $pdf->Cell(102,6,$column,1,2);
+		$txt1 = $txt1.", ".$column;
+	}
+}
+
+$pdf->MultiCell(102,10,$txt1,1);
 $pdf->SetFont('Arial','B',10);
 
-
-$pdf->Ln();
 $pdf->Cell(10,70,"7.",1);
 $pdf->Cell(25,10,"Qualification",1);
 $pdf->Cell(25,10,"Degree",1);
@@ -271,21 +295,22 @@ foreach($result1 as $row) {
 	$pdf->Cell(35,10,"",0);
 }
 
-
 $pdf->Ln();
 $pdf->SetFont('Arial','B',10);
-$pdf->Cell(10,50,"8.",1);
+$pdf->Cell(10,40,"8.",1);
 $pdf->Cell(58,10,"Work Experience Details",'TB');
 $pdf->Cell(70,10,"Total Work Experience (in years)",'TB');
-$sql1 ="SELECT experience_defense,experience_mtech FROM `expsummary` WHERE id='".$_SESSION['id']."';";
-$txt = 0;
+$sql1 =" SELECT sum(leaved - joind) FROM `workexperience` WHERE id='".$_SESSION['id']."';";
+// $txt = 0;
 $result1 = $conn->query($sql1);
+// $sql2 ="SELECT leaved FROM `workexperience` WHERE id='".$_SESSION['id']."';";
+// $result2 = $conn->query($sql2);
+
 foreach($result1 as $row) {
 	foreach($row as $column){
-		$txt = $txt + $column;
+		$pdf->Cell(42,10,$column,'TBR');
 	}
 }
-$pdf->Cell(42,10,$txt,'TBR');
 
 $pdf->Ln();
 $pdf->Cell(10,10,"",0);

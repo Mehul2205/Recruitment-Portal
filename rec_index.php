@@ -82,31 +82,6 @@ $email_error="";
 		<div class="container">
 			<div class="row">
 				<div class="col-sm jumbotron border">
-                    <h1 class="display-6">Login to our Application Portal</h1>
-                    <p class="lead">Enter email id and password to log in:</p>
-                    <hr class="my-4">
-					<form action="rec_login.php" method="post">
-						<div class="form-group">
-							<label for="lemail">Email ID</label>
-							<input type="email" class="form-control" id="lemail" name="lemail" placeholder="Enter email">
-						</div>
-						<div class="form-group">
-							<label for="lpass">Password</label>
-							<input type="password" class="form-control" id="lpass" name="lpass" placeholder="Password">
-						</div>
-						<?php
-							$class = '';
-							if(isset($_GET['invalid'])) {
-								if($_GET['invalid'] == True) {
-									$class = 'Invalid Email-Id or Password';
-								}
-							}
-						?>
-						<p class=""><?php echo $class;?></p>
-						<button type="submit" class="btn btn-primary">Submit</button>
-					</form>
-				</div>
-				<div class="col-sm jumbotron border">
                     <h1 class="display-6">New Application(New User)</h1>
                     <p class="lead">Fill in the form below:</p>
                     <p style="background-color: #ff0010;"><?php echo $email_error?></p>
@@ -131,9 +106,9 @@ $email_error="";
 						<div class="form-group">
 							<label class="my-1 mr-2" for="gender">Your Gender*</label>
 							<select class="custom-select my-1 mr-sm-2" id="gender" name="gender" required>
-								<option value="male">Male</option>
-								<option value="female">Female</option>
-								<option value="others">Others</option>
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+								<option value="Other">Other</option>
 							</select>
 						</div>
 						<div class="form-group">
@@ -204,6 +179,32 @@ $email_error="";
 						<button type="submit" class="btn btn-primary">Submit</button>
 					</form>
 				</div>
+				<div class="col-sm jumbotron border">
+                    <h1 class="display-6">Login to our Application Portal</h1>
+                    <p class="lead">Enter email id and password to log in:</p>
+                    <hr class="my-4">
+					<form action="rec_login.php" method="post">
+						<div class="form-group">
+							<label for="lemail">Email ID</label>
+							<input type="email" class="form-control" id="lemail" name="lemail" placeholder="Enter email">
+						</div>
+						<div class="form-group">
+							<label for="lpass">Password</label>
+							<input type="password" class="form-control" id="lpass" name="lpass" placeholder="Password">
+						</div>
+						<?php
+							$class = '';
+							if(isset($_GET['invalid'])) {
+								if($_GET['invalid'] == True) {
+									$class = 'Invalid Email-Id or Password';
+								}
+							}
+						?>
+						<p class=""><?php echo $class;?></p>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div>
+				
 			</div>
 		</div>
 	</div>

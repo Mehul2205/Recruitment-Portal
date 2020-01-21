@@ -37,7 +37,7 @@ if ($conn->query($sql) === FALSE)
     echo "Database error 3". $conn->error;
 }
 
-$sql="CREATE TABLE `appdata`.`caddress` ( `id` INT NOT NULL , `address_line1` VARCHAR(200) NOT NULL , `address_line2` VARCHAR(200) NOT NULL , `city` VARCHAR(200) NOT NULL , `pincode` VARCHAR(200) NOT NULL , `district` VARCHAR(200) NOT NULL , `state` VARCHAR(200) NOT NULL , `specialization1` VARCHAR(100) NOT NULL , `specialization2` VARCHAR(100) NOT NULL , `specialization3` VARCHAR(100) NOT NULL , UNIQUE `id` (`id`)) ENGINE = InnoDB;";
+$sql="CREATE TABLE `appdata`.`caddress` ( `id` INT NOT NULL , `address_line1` VARCHAR(200) NOT NULL , `address_line2` VARCHAR(200) NOT NULL , `city` VARCHAR(200) NOT NULL , `pincode` VARCHAR(200) NOT NULL , `district` VARCHAR(200) NOT NULL , `state` VARCHAR(200) NOT NULL , UNIQUE `id` (`id`)) ENGINE = InnoDB;";
 
 if ($conn->query($sql) === FALSE)
 {
@@ -146,7 +146,7 @@ if ($conn->query($sql) === FALSE)
     echo "Database error 3". $conn->error;
 }
 
-$sql="CREATE TABLE `appdata`.`add_details` ( `id` INT NOT NULL , `description` INT NOT NULL , UNIQUE (`id`)) ENGINE = InnoDB;";
+$sql="CREATE TABLE `appdata`.`add_details` ( `id` INT NOT NULL , `description` INT NOT NULL , `specialization1` VARCHAR(100) NOT NULL , `specialization2` VARCHAR(100) NOT NULL , `specialization3` VARCHAR(100) NOT NULL , UNIQUE (`id`)) ENGINE = InnoDB;";
 if ($conn->query($sql) === FALSE)
 {
     echo "Database error 3". $conn->error;
